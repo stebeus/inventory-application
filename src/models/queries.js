@@ -1,6 +1,7 @@
 import {
 	queryCreateTable,
 	queryDelete,
+	queryDropTable,
 	queryInsert,
 	querySelect,
 	queryUpdate,
@@ -65,6 +66,11 @@ const updateItem = async (tableName, name, description, id) => {
 	return await pool.query(sql);
 };
 
+const dropCategory = async (tableName) => {
+	const sql = queryDropTable(tableName);
+	return await pool.query(sql);
+};
+
 const deleteCategory = async (id) => {
 	const sql = queryDelete('categories', `id = ${id}`);
 	return await pool.query(sql);
@@ -79,6 +85,7 @@ export {
 	createCategory,
 	deleteCategory,
 	deleteItem,
+	dropCategory,
 	getAllCategories,
 	getAllItems,
 	getItem,
