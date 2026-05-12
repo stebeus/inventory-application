@@ -11,8 +11,8 @@ import { pool } from './pool.js';
 
 const createCategory = async (name, categoryId) => {
 	const columns = `
-		name VARCHAR (25),
-		description VARCHAR (250),
+		name VARCHAR (25) NOT NULL,
+		description VARCHAR (250) NOT NULL,
 		category_id INTEGER REFERENCES categories ${categoryId}
 	`;
 
