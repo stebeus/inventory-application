@@ -1,0 +1,31 @@
+{
+	"name": "inventory-application",
+	"version": "0.1.0",
+	"private": true,
+	"type": "module",
+	"imports": {
+		"#root/*": "./src/*"
+	},
+	"scripts": {
+		"lint": "biome check --fix",
+		"populate-model": "node src/models/populate-model.js",
+		"serve": "node --watch src/server.js",
+		"start": "pnpm populate-model & pnpm serve",
+		"test": "node --test --watch"
+	},
+	"dependencies": {
+		"ejs": "^5.0.2",
+		"express": "^5.2.1",
+		"pg": "^8.20.0"
+	},
+	"devDependencies": {
+		"@biomejs/biome": "2.4.14"
+	},
+	"devEngines": {
+		"packageManager": {
+			"name": "pnpm",
+			"version": "^11.0.3",
+			"onFail": "download"
+		}
+	}
+}

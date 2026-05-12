@@ -1,0 +1,15 @@
+<!doctype html>
+<html lang="en">
+
+<%- include('partials/head', {title}) %>
+
+<body>
+  <div id="root">
+    <h1><%= statusCode %></h1>
+    <p><%= error.message %></p>
+    <a href="/">Go back</a>
+    <pre><%= error.stack %></pre>
+  </div>
+</body>
+
+</html>
