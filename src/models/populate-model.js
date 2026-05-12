@@ -4,7 +4,12 @@ import { Client } from 'pg';
 
 import { DATABASE_URL } from '#root/constants.js';
 
-const SQL = ``;
+const SQL = `
+CREATE TABLE IF NOT EXISTS categories (
+  id INTEGER PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
+  title VARCHAR (25) NOT NULL
+);
+`;
 
 async function populateModel(databaseUrl, sql) {
 	console.log('Seeding...');
