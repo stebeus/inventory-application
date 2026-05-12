@@ -52,14 +52,14 @@ const getAllItems = async (tableName) => {
 };
 
 const updateCategory = async (name, id) => {
-	const sql = queryUpdate('categories', `SET name = ${name}`, `id = ${id}`);
+	const sql = queryUpdate('categories', `name = ${name}`, `id = ${id}`);
 	return await pool.query(sql);
 };
 
 const updateItem = async (tableName, name, description, id) => {
 	const sql = queryUpdate(
 		tableName,
-		`SET name = ${name}, description = ${description}`,
+		`name = ${name}, description = ${description}`,
 		`id = ${id}`,
 	);
 
