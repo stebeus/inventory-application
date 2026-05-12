@@ -3,13 +3,9 @@
 import { Client } from 'pg';
 
 import { DATABASE_URL } from '#root/constants.js';
+import { queryCreateTable } from '#root/utils/queries.js';
 
-const SQL = `
-CREATE TABLE IF NOT EXISTS categories (
-  id INTEGER PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
-  title VARCHAR (25) NOT NULL
-);
-`;
+const SQL = queryCreateTable('categories', 'title VARCHAR (25) NOT NULL');
 
 async function populateModel(databaseUrl, sql) {
 	console.log('Seeding...');
