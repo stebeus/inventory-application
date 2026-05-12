@@ -1,10 +1,33 @@
 <!doctype html>
 <html lang="en">
 
-<%- include('partials/head', {title}) %>
+<%- include('partials/head', { title }) %>
 
 <body>
-  <div id="root"></div>
+  <div id="root">
+    <%- include('partials/header') %>
+    <main>
+      <nav>
+        <ul>
+          <% for (const { title, imgUrl } of categories) {%>
+          <%- include('partials/category', { title, imgUrl }) %>
+          <% } %>
+        </ul>
+      </nav>
+
+      <form action="/query" method="get">
+        Search items
+        <input type="search" name="query">
+      </form>
+
+      <div class="grid">
+        <% for (const { itemName, imgUrl } of items) {%>
+        <%- include('partials/item', { itemName, imgUrl }) %>
+        <% } %>
+      </div>
+    </main>
+    <%- include('partials/footer') %>
+  </div>
 </body>
 
 </html>

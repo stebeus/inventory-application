@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="en">
+
+<%- include('partials/head', { title }) %>
+
+<body>
+  <div id="root">
+    <%- include('partials/homepage-link') %>
+    <form action="/create-item" method="post">
+      <h1>Create item</h1>
+      <%- include('partials/text-field', { label: 'Item name' }) %>
+      <%- include('partials/text-field', { label: 'Image URL' }) %>
+      <label>
+        <span class="label">Description: </span>
+        <textarea name="itemDescription"></textarea>
+      </label>
+      <button type="submit">Submit</button>
+    </form>
+  </div>
+</body>
+
+</html>
