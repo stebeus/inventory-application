@@ -1,96 +1,28 @@
-import {
-	queryCreateTable,
-	queryDelete,
-	queryDropTable,
-	queryInsert,
-	querySelect,
-	queryUpdate,
-} from '#root/utils/queries.js';
-
 import { pool } from './pool.js';
 
-const createCategory = async (name, categoryId) => {
-	const columns = `
-		name VARCHAR (25) NOT NULL,
-		description VARCHAR (250) NOT NULL,
-		category_id INTEGER REFERENCES categories ${categoryId}
-	`;
+const createTable = (name, columns) => `
+	CREATE TABLE IF NOT EXISTS ${name} (
+		id INTEGER PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
+		${columns}
+	)
+`;
 
-	const sql = queryCreateTable(name, columns);
+const dropTable = (name) => `DROP TABLE IF EXISTS ${name}`;
 
-	return await pool.query(sql);
+const insert = (table, columns, values) =>
+	`INSERT INTO ${table} (${columns}) VALUES ${values}`;
+
+const select = (columns = '*', table, condition) => {
+	const hasCondition = condition == null ? '' : `WHERE ${condition}`;
+	return `SELECT ${columns} FROM ${table} ${hasCondition}`;
 };
 
-const insertCategory = async (name) => {
-	const sql = queryInsert('categories', '(name)', name);
-	return await pool.query(sql);
-};
+const update = (table, columns, condition) =>
+	`UPDATE ${table} SET ${columns} WHERE ${condition}`;
 
-const insertItem = async (tableName, name, description, categoryId) => {
-	const sql = queryInsert(
-		tableName,
-		'(name, description, categoryId)',
-		`(${name}, ${description}, ${categoryId})`,
-	);
+const del = (table, condition) => `DELETE FROM ${table} WHERE ${condition}`;
 
-	return await pool.query(sql);
-};
+const query = async (operation, ...parameters) =>
+	await pool.query(operation(...parameters));
 
-const getAllCategories = async () => {
-	const sql = querySelect('categories');
-	return await pool.query(sql);
-};
-
-const getItem = async (tableName, name) => {
-	const sql = querySelect(tableName, `name = ${name}`);
-	return await pool.query(sql);
-};
-
-const getAllItems = async (tableName) => {
-	const sql = querySelect(tableName);
-	return await pool.query(sql);
-};
-
-const updateCategory = async (name, id) => {
-	const sql = queryUpdate('categories', `name = ${name}`, `id = ${id}`);
-	return await pool.query(sql);
-};
-
-const updateItem = async (tableName, name, description, id) => {
-	const sql = queryUpdate(
-		tableName,
-		`name = ${name}, description = ${description}`,
-		`id = ${id}`,
-	);
-
-	return await pool.query(sql);
-};
-
-const dropCategory = async (tableName) => {
-	const sql = queryDropTable(tableName);
-	return await pool.query(sql);
-};
-
-const deleteCategory = async (id) => {
-	const sql = queryDelete('categories', `id = ${id}`);
-	return await pool.query(sql);
-};
-
-const deleteItem = async (tableName, id) => {
-	const sql = queryDelete(`${tableName}`, `id = ${id}`);
-	return await pool.query(sql);
-};
-
-export {
-	createCategory,
-	deleteCategory,
-	deleteItem,
-	dropCategory,
-	getAllCategories,
-	getAllItems,
-	getItem,
-	insertCategory,
-	insertItem,
-	updateCategory,
-	updateItem,
-};
+export { createTable, del, dropTable, insert, query, select, update };

@@ -3,9 +3,10 @@
 import { Client } from 'pg';
 
 import { DATABASE_URL } from '#root/constants.js';
-import { queryCreateTable } from '#root/utils/queries.js';
 
-const SQL = queryCreateTable('categories', 'title VARCHAR (25) NOT NULL');
+import { createTable } from './queries.js';
+
+const SQL = createTable('categories', 'title VARCHAR (25) NOT NULL');
 
 async function populateModel(databaseUrl, sql) {
 	console.log('Seeding...');
