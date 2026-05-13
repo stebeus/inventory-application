@@ -26,7 +26,13 @@ const update = (table, columns, condition) =>
 
 const del = (table, condition) => `DELETE FROM ${table} WHERE ${condition}`;
 
-const queryDb = async (command, ...parameters) =>
-	await pool.query(command(...parameters));
+const queryDb = async (command, ...parameters) => {
+	const sql = command(...parameters);
+	const query = await pool.query(sql);
+
+	const isSelect = command.name === 'select';
+
+	return isSelect ? query.rows : query;
+};
 
 export { createTable, del, dropTable, insert, queryDb, select, update };
