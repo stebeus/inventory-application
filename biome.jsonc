@@ -73,6 +73,7 @@
 				"useCollapsedIf": "error",
 				"useConsistentArrowReturn": "error",
 				"useConsistentObjectDefinitions": "error",
+				"useExportsLast": "error",
 				"useFilenamingConvention": {
 					"level": "error",
 					"options": {
