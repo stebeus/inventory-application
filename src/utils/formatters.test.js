@@ -11,4 +11,9 @@ describe('formatToKebabCase', () => {
 		const string = formatToKebabCase('Hello, world!');
 		assert.equal(string, 'hello-world');
 	});
+
+	it('kebab cases strings', () => {
+		const string = formatToKebabCase('John Do_e-123 ');
+		assert.equal(string, 'john-doe-123');
+	});
 });
