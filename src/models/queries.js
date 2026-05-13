@@ -16,7 +16,7 @@ const insert = (table, columns, ...values) => {
 	return `INSERT INTO ${table} (${columns}) VALUES ${parsedValues}`;
 };
 
-const select = (table, condition, columns = '*') => {
+const select = (columns, table, condition) => {
 	const hasCondition = condition == null ? '' : `WHERE ${condition}`;
 	return `SELECT ${columns} FROM ${table} ${hasCondition}`;
 };
