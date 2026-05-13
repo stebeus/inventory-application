@@ -5,12 +5,12 @@ const getIndex = async (req, res) => {
 	const categories = await queryDb(select, '*', 'categories');
 
 	const {
-		params: { category = 'Blocks' },
+		params: { categoryId = 'Blocks' },
 	} = req;
-	const items = await queryDb(select, '*', category);
+	const items = await queryDb(select, '*', categoryId);
 
 	res.render('index', {
-		title: category,
+		title: categoryId,
 		categories,
 		items,
 		formatToKebabCase,
