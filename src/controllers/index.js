@@ -8,7 +8,7 @@ const getIndex = async (req, res) => {
 	} = req;
 	const items = await queryDb(select, '*', category);
 
-	res.render('index', { title: null, categories, items });
+	res.render('index', { title: category, categories, items });
 };
 
 export { getIndex };
