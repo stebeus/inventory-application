@@ -13,7 +13,7 @@ const SQL = createTable(
 	timestamp TIMESTAMPTZ DEFAULT NOW()`,
 );
 
-async function populateDb(url, sql) {
+const populateDb = async (url, sql) => {
 	console.log('Seeding...');
 
 	const client = new Client({ connectionString: url });
@@ -23,6 +23,6 @@ async function populateDb(url, sql) {
 	await client.end();
 
 	console.log('Done');
-}
+};
 
 populateDb(DATABASE_URL, SQL);
