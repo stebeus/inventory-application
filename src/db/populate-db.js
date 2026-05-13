@@ -9,6 +9,7 @@ import { createTable } from './queries.js';
 const SQL = createTable(
 	'categories',
 	`name VARCHAR (25) NOT NULL,
+	img_url text NOT NULL,
 	timestamp TIMESTAMPTZ DEFAULT NOW()`,
 );
 
