@@ -1,6 +1,6 @@
-# Inventory Application
+# Inventory app
 
-Minecraft inventory application.
+Minecraft inventory app.
 
 ## License
 
