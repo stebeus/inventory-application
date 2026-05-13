@@ -1,3 +1,1 @@
-const stringifyArray = (array) => `(${array})`;
-
-export { stringifyArray };
+export const stringifyArray = (array) => `(${array})`;
