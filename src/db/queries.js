@@ -17,8 +17,8 @@ const insert = (table, columns, ...values) => {
 };
 
 const select = (columns, table, condition) => {
-	const hasCondition = condition == null ? '' : `WHERE ${condition}`;
-	return `SELECT ${columns} FROM ${table} ${hasCondition}`;
+	const hasCondition = condition == null ? '' : ` WHERE ${condition}`;
+	return `SELECT ${columns} FROM ${table}${hasCondition}`;
 };
 
 const update = (table, columns, condition) =>
