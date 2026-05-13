@@ -1,3 +1,5 @@
+import { stringifyArray } from '#root/utils/arrays.js';
+
 import { pool } from './pool.js';
 
 const createTable = (name, columns) => `
@@ -9,8 +11,10 @@ const createTable = (name, columns) => `
 
 const dropTable = (name) => `DROP TABLE IF EXISTS ${name}`;
 
-const insert = (table, columns, values) =>
-	`INSERT INTO ${table} (${columns}) VALUES ${values}`;
+const insert = (table, columns, ...values) => {
+	const parsedValues = values.map(stringifyArray).toString();
+	return `INSERT INTO ${table} (${columns}) VALUES ${parsedValues}`;
+};
 
 const select = (columns = '*', table, condition) => {
 	const hasCondition = condition == null ? '' : `WHERE ${condition}`;
