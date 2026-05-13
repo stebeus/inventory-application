@@ -6,7 +6,11 @@ import { DATABASE_URL } from '#root/constants.js';
 
 import { createTable } from './queries.js';
 
-const SQL = createTable('categories', 'title VARCHAR (25) NOT NULL');
+const SQL = createTable(
+	'categories',
+	`name VARCHAR (25) NOT NULL,
+	timestamp TIMESTAMPTZ DEFAULT NOW()`,
+);
 
 async function populateModel(databaseUrl, sql) {
 	console.log('Seeding...');
