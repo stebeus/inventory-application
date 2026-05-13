@@ -1,3 +1,9 @@
-import { describe } from 'node:test';
+import assert from 'node:assert/strict';
+import { describe, it } from 'node:test';
 
-describe('formatToKebabCase', () => {});
+describe('formatToKebabCase', () => {
+	it('parses inputs to strings', () => {
+		const string = formatToKebabCase(null);
+		assert.equal(string, 'null');
+	});
+});
