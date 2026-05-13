@@ -5,7 +5,7 @@ import express from 'express';
 import { forwardNotFoundError, handleError } from './controllers/error.js';
 import { index } from './routes/index.js';
 
-export const app = express();
+const app = express();
 
 const { dirname } = import.meta;
 const viewsPath = path.join(dirname, 'views');
@@ -20,3 +20,5 @@ app.use('/', index);
 
 app.use(forwardNotFoundError);
 app.use(handleError);
+
+export { app };

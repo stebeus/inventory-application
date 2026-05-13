@@ -6,4 +6,6 @@ try {
 	console.error(error);
 }
 
-export const { DATABASE_URL, PORT = 3000 } = process.env;
+const { DATABASE_URL, PORT = 3000 } = process.env;
+
+export { DATABASE_URL, PORT };

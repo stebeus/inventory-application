@@ -6,12 +6,12 @@ class ApiError extends Error {
 	}
 }
 
-export function forwardNotFoundError(req, res, next) {
+function forwardNotFoundError(req, res, next) {
 	const notFoundError = new ApiError(404, 'Not Found');
 	next(notFoundError);
 }
 
-export function handleError(error, req, res, next) {
+function handleError(error, req, res, next) {
 	if (res.headersSent) return next(error);
 
 	const { statusCode = 500 } = error;
@@ -20,3 +20,5 @@ export function handleError(error, req, res, next) {
 	console.log(error.stack);
 	res.status(statusCode).render('error', { title, statusCode, error });
 }
+
+export { forwardNotFoundError, handleError };
