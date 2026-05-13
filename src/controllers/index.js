@@ -5,8 +5,11 @@ const getIndex = async (req, res) => {
 	const categories = await queryDb(select, '*', 'categories');
 
 	const {
-		params: { categoryId = 'Blocks' },
+		params: { categoryId },
 	} = req;
+
+	if (categoryId == null) res.redirect('Blocks/');
+
 	const items = await queryDb(select, '*', categoryId);
 
 	res.render('index', {
