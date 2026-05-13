@@ -8,9 +8,9 @@
 	},
 	"scripts": {
 		"lint": "biome check --fix",
-		"populate-model": "node src/models/populate-model.js",
+		"populate-db": "node src/db/populate-db.js",
 		"serve": "node --watch src/server.js",
-		"start": "pnpm populate-model & pnpm serve",
+		"start": "pnpm populate-db & pnpm serve",
 		"test": "node --test --watch"
 	},
 	"dependencies": {
