@@ -8,7 +8,11 @@
       <ul class="tabs">
         <% for (const { id, name, img_url } of categories) { %>
         <li id="<%= id %>" class="tab">
-          <%- include('partials/icon-link', { name, img_url }) %>
+          <%- include('partials/icon-link', {
+            href: `/${name}/`,
+            img_url,
+            name
+          }) %>
         </li>
         <% } %>
       </ul>
@@ -18,7 +22,11 @@
       <div class="grid">
         <% for (const { id, name, img_url } of items) { %>
         <div id="<%= id %>" class="cell">
-          <%- include('partials/icon-link', { name, img_url }) %>
+          <%- include('partials/icon-link', {
+            href: `${name}`,
+            img_url,
+            name
+          }) %>
         </div>
         <% } %>
       </div>
